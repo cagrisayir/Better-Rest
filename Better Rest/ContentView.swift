@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var wakeUp = Date.now
+    
     @State private var sleepAmount = 8.0
     var body: some View {
-        Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 4...10, step: 0.5)
+        VStack {
+            Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 4...10, step: 0.5)
+            DatePicker("Please enter a time", selection: $wakeUp, in: Date.now...)
+        }
+        
+        
+    }
+    
+    func exampleDate() {
+        let tomorrow = Date.now.addingTimeInterval(86400)
+        let range = Date.now...tomorrow
     }
 }
 
